@@ -57,5 +57,10 @@ namespace Okta.AspNetCore
         /// </summary>
         /// <seealso cref="https://docs.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.authentication.openidconnect.openidconnectevents"/>
         public OpenIdConnectEvents OpenIdConnectEvents { get; set; }
+
+        /// <summary>
+        /// Set to true for role support.
+        /// </summary>
+        public bool MapRoles { get; set; }
     }
 }

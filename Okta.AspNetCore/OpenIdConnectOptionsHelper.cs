@@ -25,7 +25,8 @@ namespace Okta.AspNetCore
         /// </summary>
         /// <param name="oktaMvcOptions">The <see cref="OktaMvcOptions"/> options.</param>
         /// <param name="oidcOptions">The OpenIdConnectOptions to configure.</param>
-        public static void ConfigureOpenIdConnectOptions(OktaMvcOptions oktaMvcOptions, OpenIdConnectOptions oidcOptions)
+        public static void ConfigureOpenIdConnectOptions(OktaMvcOptions oktaMvcOptions,
+            OpenIdConnectOptions oidcOptions)
         {
             var issuer = UrlHelper.CreateIssuerUrl(oktaMvcOptions.OktaDomain, oktaMvcOptions.AuthorizationServerId);
 
@@ -77,6 +78,11 @@ namespace Okta.AspNetCore
             oidcOptions.ClaimActions.MapJsonKey(ClaimTypes.Name, "name");
             oidcOptions.ClaimActions.MapJsonKey(ClaimTypes.NameIdentifier, "sub");
             oidcOptions.ClaimActions.MapJsonKey(ClaimTypes.Surname, "family_name");
+
+            if (oktaMvcOptions.MapRoles)
+            {
+                oidcOptions.ClaimActions.MapJsonKey(ClaimTypes.Role, "roles");
+            }
         }
 
         /// <summary>
